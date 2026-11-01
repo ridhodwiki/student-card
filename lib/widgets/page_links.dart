@@ -20,14 +20,11 @@ class PageLinks extends StatelessWidget {
             TextButton(
               onPressed: () => onNavigate(index),
               style: TextButton.styleFrom(
-                foregroundColor: Colors.white,
+                foregroundColor: AppColors.mutedText,
                 minimumSize: const Size(0, 44),
                 padding: const EdgeInsets.symmetric(horizontal: 12),
               ),
-              child: Text(
-                appDestinations[index].label,
-                style: const TextStyle(color: AppColors.mutedText),
-              ),
+              child: Text(appDestinations[index].label),
             ),
       ],
     );

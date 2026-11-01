@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../app_scaffold.dart';
 import '../navigation.dart';
 import '../theme.dart';
 import '../widgets/app_card.dart';
@@ -13,54 +14,61 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
-      children: [
-        AppCard(
-          child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  'assets/image/1.png',
-                  width: 96,
-                  height: 96,
-                  fit: BoxFit.cover,
-                ),
-                const SizedBox(height: 20),
-                const Text(
-                  'Ridho Dwiki Zakaria',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+    return AppScaffold(
+      current: AppTab.profile,
+      onNavigate: onNavigate,
+      child: AppPage(
+        children: [
+          AppCard(
+            child: SizedBox(
+              width: double.infinity,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    'assets/image/1.png',
+                    width: 96,
+                    height: 96,
+                    fit: BoxFit.cover,
                   ),
-                ),
-                const SizedBox(height: 6),
-                const Text(
-                  'Mahasiswa Teknik Informatika',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 13, color: AppColors.mutedText),
-                ),
-                const SizedBox(height: 24),
-                Container(height: 1, color: AppColors.border),
-                const SizedBox(height: 20),
-                const _ProfileRow(label: 'Nama', value: 'Ridho Dwiki Zakaria'),
-                const SizedBox(height: 16),
-                const _ProfileRow(label: 'NIM', value: '24670007'),
-                const SizedBox(height: 16),
-                const _ProfileRow(
-                  label: 'Program Studi',
-                  value: 'Teknik Informatika',
-                ),
-              ],
+                  const SizedBox(height: 20),
+                  const Text(
+                    'Ridho Dwiki Zakaria',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  const Text(
+                    'Mahasiswa Teknik Informatika',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 13, color: AppColors.mutedText),
+                  ),
+                  const SizedBox(height: 24),
+                  Container(height: 1, color: AppColors.border),
+                  const SizedBox(height: 20),
+                  const _ProfileRow(
+                    label: 'Nama',
+                    value: 'Ridho Dwiki Zakaria',
+                  ),
+                  const SizedBox(height: 16),
+                  const _ProfileRow(label: 'NIM', value: '24670007'),
+                  const SizedBox(height: 16),
+                  const _ProfileRow(
+                    label: 'Program Studi',
+                    value: 'Teknik Informatika',
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 16),
-        PageLinks(current: AppTab.profile, onNavigate: onNavigate),
-      ],
+          const SizedBox(height: 16),
+          PageLinks(current: AppTab.profile, onNavigate: onNavigate),
+        ],
+      ),
     );
   }
 }

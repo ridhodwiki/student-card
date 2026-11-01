@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../app_scaffold.dart';
 import '../navigation.dart';
 import '../theme.dart';
 import '../widgets/app_card.dart';
@@ -13,34 +14,38 @@ class ContactPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppPage(
-      children: [
-        AppCard(
-          child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const _ContactRow(
-                  icon: Icons.mail_outline,
-                  label: 'EMAIL',
-                  value: 'ridhodwiki768@gmail.com',
-                ),
-                const SizedBox(height: 24),
-                Container(height: 1, color: AppColors.border),
-                const SizedBox(height: 24),
-                const _ContactRow(
-                  icon: Icons.phone_outlined,
-                  label: 'TELEPON',
-                  value: '089526352118',
-                ),
-              ],
+    return AppScaffold(
+      current: AppTab.contact,
+      onNavigate: onNavigate,
+      child: AppPage(
+        children: [
+          AppCard(
+            child: SizedBox(
+              width: double.infinity,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const _ContactRow(
+                    icon: Icons.mail_outline,
+                    label: 'EMAIL',
+                    value: 'ridhodwiki768@gmail.com',
+                  ),
+                  const SizedBox(height: 24),
+                  Container(height: 1, color: AppColors.border),
+                  const SizedBox(height: 24),
+                  const _ContactRow(
+                    icon: Icons.phone_outlined,
+                    label: 'TELEPON',
+                    value: '089526352118',
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 16),
-        PageLinks(current: AppTab.contact, onNavigate: onNavigate),
-      ],
+          const SizedBox(height: 16),
+          PageLinks(current: AppTab.contact, onNavigate: onNavigate),
+        ],
+      ),
     );
   }
 }

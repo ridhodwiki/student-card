@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app_shell.dart';
+import 'app_routes.dart';
 import 'theme.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: 'Mini Project - Student Card',
       theme: buildAppTheme(),
-      home: const AppShell(),
+      home: const AppRoot(),
     );
   }
 }

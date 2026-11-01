@@ -42,4 +42,44 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Ridho Dwiki Zakaria'), findsOneWidget);
   });
+
+  testWidgets('Navigator.pop dari AppBar kembali ke halaman sebelumnya', (
+    tester,
+  ) async {
+    await tester.pumpWidget(const MainApp());
+
+    await tester.tap(find.byIcon(Icons.person_outline));
+    await tester.pumpAndSettle();
+    expect(find.text('Program Studi'), findsOneWidget);
+
+    await tester.tap(find.byIcon(Icons.arrow_back));
+    await tester.pumpAndSettle();
+    expect(
+      find.descendant(
+        of: find.byType(AppBar),
+        matching: find.text('Mini Project - Student Card'),
+      ),
+      findsOneWidget,
+    );
+    expect(find.text('Click Me'), findsOneWidget);
+  });
+
+  testWidgets('Click Me membuka SecondPage lalu kembali', (tester) async {
+    await tester.pumpWidget(const MainApp());
+
+    final clickMe = find.text('Click Me');
+    await tester.ensureVisible(clickMe);
+    await tester.pumpAndSettle();
+    await tester.tap(clickMe);
+    await tester.pumpAndSettle();
+    expect(find.text('Tentang Aplikasi'), findsOneWidget);
+    expect(find.text('Versi 0.1.0'), findsOneWidget);
+
+    final back = find.widgetWithText(OutlinedButton, 'Kembali');
+    await tester.ensureVisible(back);
+    await tester.pumpAndSettle();
+    await tester.tap(back);
+    await tester.pumpAndSettle();
+    expect(find.text('Click Me'), findsOneWidget);
+  });
 }
