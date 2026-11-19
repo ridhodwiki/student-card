@@ -27,6 +27,7 @@ class HomePage extends StatelessWidget {
               children: [
                 Image.asset(
                   'assets/image/1.png',
+                  semanticLabel: 'Foto Ridho Dwiki Zakaria',
                   width: 96,
                   height: 96,
                   fit: BoxFit.cover,
@@ -51,9 +52,7 @@ class HomePage extends StatelessWidget {
                 Container(height: 1, color: AppColors.border),
                 const SizedBox(height: 20),
                 const Text(
-                  'Mini project Flutter berisi kartu mahasiswa, profil, galeri, '
-                  'dan kontak. Gunakan menu di bawah atau tautan halaman untuk '
-                  'berpindah.',
+                  'Lihat kartu mahasiswa dan profil, atau buka katalog perlengkapan kuliah.',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 14,
@@ -71,7 +70,7 @@ class HomePage extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const SecondPage()),
               );
             },
-            child: const Text('Click Me'),
+            child: const Text('Tentang Aplikasi'),
           ),
           const SizedBox(height: 16),
           PageLinks(current: AppTab.home, onNavigate: onNavigate),

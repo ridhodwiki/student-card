@@ -27,6 +27,7 @@ class ProfilePage extends StatelessWidget {
                 children: [
                   Image.asset(
                     'assets/image/1.png',
+                    semanticLabel: 'Foto Ridho Dwiki Zakaria',
                     width: 96,
                     height: 96,
                     fit: BoxFit.cover,

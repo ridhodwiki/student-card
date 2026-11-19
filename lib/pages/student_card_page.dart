@@ -35,6 +35,7 @@ class StudentCardPage extends StatelessWidget {
                 const SizedBox(height: 16),
                 Image.asset(
                   'assets/image/1.png',
+                  semanticLabel: 'Foto Ridho Dwiki Zakaria',
                   width: 96,
                   height: 96,
                   fit: BoxFit.cover,
@@ -66,13 +67,10 @@ class StudentCardPage extends StatelessWidget {
                 const SizedBox(height: 24),
                 Container(height: 1, color: AppColors.border),
                 const SizedBox(height: 20),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.mail, color: Colors.white, size: 24),
-                    SizedBox(width: 20),
-                    Icon(Icons.phone, color: Colors.white, size: 24),
-                  ],
+                OutlinedButton.icon(
+                  onPressed: () => onNavigate(AppTab.contact),
+                  icon: const Icon(Icons.contact_page_outlined),
+                  label: const Text('Lihat kontak'),
                 ),
               ],
             ),

@@ -28,7 +28,11 @@ class GalleryPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   child: AspectRatio(
                     aspectRatio: 1,
-                    child: Image.asset('assets/image/1.png', fit: BoxFit.cover),
+                    child: Image.asset(
+                      'assets/image/1.png',
+                      semanticLabel: 'Foto Ridho Dwiki Zakaria',
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16),

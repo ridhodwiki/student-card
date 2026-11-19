@@ -3,7 +3,25 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_widget/main.dart';
 
 void main() {
-  testWidgets('bottom nav dan tautan halaman berpindah antar 5 halaman', (
+  testWidgets('navigasi samping membuka kartu dan kontak pada layar lebar', (
+    tester,
+  ) async {
+    tester.view.devicePixelRatio = 1;
+    tester.view.physicalSize = const Size(1280, 800);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    addTearDown(tester.view.resetPhysicalSize);
+    await tester.pumpWidget(const MainApp());
+    expect(find.byType(NavigationRail), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.badge_outlined));
+    await tester.pumpAndSettle();
+    final kontak = find.text('Lihat kontak');
+    await tester.ensureVisible(kontak);
+    await tester.tap(kontak);
+    await tester.pumpAndSettle();
+    expect(find.text('TELEPON'), findsOneWidget);
+  });
+
+  testWidgets('bottom nav dan tautan halaman berpindah antar 6 halaman', (
     tester,
   ) async {
     await tester.pumpWidget(const MainApp());
@@ -38,7 +56,29 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Foto Profil'), findsOneWidget);
 
-    await tester.tap(find.byIcon(Icons.home_outlined));
+    await tester.tap(find.byIcon(Icons.storefront_outlined));
+    await tester.pumpAndSettle();
+    expect(find.text('Perlengkapan Kuliah'), findsOneWidget);
+    expect(
+      tester.widget<NavigationBar>(find.byType(NavigationBar)).selectedIndex,
+      5,
+    );
+
+    await tester.tap(find.byIcon(Icons.arrow_back));
+    await tester.pumpAndSettle();
+    expect(find.text('Foto Profil'), findsOneWidget);
+
+    final katalogLink = find.widgetWithText(TextButton, 'Katalog');
+    await tester.ensureVisible(katalogLink);
+    await tester.pumpAndSettle();
+    await tester.tap(katalogLink);
+    await tester.pumpAndSettle();
+    expect(find.text('Perlengkapan Kuliah'), findsOneWidget);
+
+    final homeLink = find.widgetWithText(TextButton, 'Beranda');
+    await tester.ensureVisible(homeLink);
+    await tester.pumpAndSettle();
+    await tester.tap(homeLink);
     await tester.pumpAndSettle();
     expect(find.text('Ridho Dwiki Zakaria'), findsOneWidget);
   });
@@ -61,16 +101,18 @@ void main() {
       ),
       findsOneWidget,
     );
-    expect(find.text('Click Me'), findsOneWidget);
+    expect(find.text('Tentang Aplikasi'), findsOneWidget);
   });
 
-  testWidgets('Click Me membuka SecondPage lalu kembali', (tester) async {
+  testWidgets('Tentang Aplikasi membuka SecondPage lalu kembali', (
+    tester,
+  ) async {
     await tester.pumpWidget(const MainApp());
 
-    final clickMe = find.text('Click Me');
-    await tester.ensureVisible(clickMe);
+    final tentang = find.text('Tentang Aplikasi');
+    await tester.ensureVisible(tentang);
     await tester.pumpAndSettle();
-    await tester.tap(clickMe);
+    await tester.tap(tentang);
     await tester.pumpAndSettle();
     expect(find.text('Tentang Aplikasi'), findsOneWidget);
     expect(find.text('Versi 0.1.0'), findsOneWidget);
@@ -80,6 +122,6 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(back);
     await tester.pumpAndSettle();
-    expect(find.text('Click Me'), findsOneWidget);
+    expect(find.text('Tentang Aplikasi'), findsOneWidget);
   });
 }

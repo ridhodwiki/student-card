@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 class AppColors {
   const AppColors._();
 
-  static const background = Color(0xFF4C1D95);
-  static const card = Color(0xFF5B21B6);
-  static const navigationBar = Color(0xFF3B147A);
+  static const background = Color(0xFF12334B);
+  static const card = Color(0xFF19465F);
+  static const navigationBar = Color(0xFF0E293D);
+  static const navigationAccent = Color(0xFF8AE1D2);
   static const border = Colors.white24;
   static const mutedText = Colors.white70;
 }
@@ -15,6 +16,14 @@ ThemeData buildAppTheme() {
     seedColor: AppColors.background,
     brightness: Brightness.dark,
   );
+  const activeIcon = IconThemeData(color: AppColors.navigationBar, size: 24);
+  const idleIcon = IconThemeData(color: AppColors.mutedText, size: 22);
+  const activeLabel = TextStyle(
+    color: AppColors.navigationAccent,
+    fontWeight: FontWeight.w700,
+    fontSize: 12,
+  );
+  const idleLabel = TextStyle(color: AppColors.mutedText, fontSize: 12);
 
   return ThemeData(
     useMaterial3: true,
@@ -27,25 +36,25 @@ ThemeData buildAppTheme() {
     ),
     navigationBarTheme: NavigationBarThemeData(
       backgroundColor: AppColors.navigationBar,
-      indicatorColor: AppColors.border,
+      elevation: 0,
+      indicatorColor: AppColors.navigationAccent,
       iconTheme: WidgetStateProperty.resolveWith(
-        (states) => IconThemeData(
-          color: states.contains(WidgetState.selected)
-              ? Colors.white
-              : AppColors.mutedText,
-        ),
+        (states) =>
+            states.contains(WidgetState.selected) ? activeIcon : idleIcon,
       ),
       labelTextStyle: WidgetStateProperty.resolveWith(
-        (states) => TextStyle(
-          fontSize: 12,
-          fontWeight: states.contains(WidgetState.selected)
-              ? FontWeight.bold
-              : FontWeight.normal,
-          color: states.contains(WidgetState.selected)
-              ? Colors.white
-              : AppColors.mutedText,
-        ),
+        (states) =>
+            states.contains(WidgetState.selected) ? activeLabel : idleLabel,
       ),
+    ),
+    navigationRailTheme: const NavigationRailThemeData(
+      backgroundColor: AppColors.navigationBar,
+      useIndicator: true,
+      indicatorColor: AppColors.navigationAccent,
+      selectedIconTheme: activeIcon,
+      unselectedIconTheme: idleIcon,
+      selectedLabelTextStyle: activeLabel,
+      unselectedLabelTextStyle: idleLabel,
     ),
   );
 }

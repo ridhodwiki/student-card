@@ -6,6 +6,7 @@ abstract final class AppTab {
   static const profile = 2;
   static const gallery = 3;
   static const contact = 4;
+  static const katalog = 5;
 }
 
 class AppDestination {
@@ -38,4 +39,9 @@ const appDestinations = <AppDestination>[
     icon: Icons.photo_library_outlined,
   ),
   AppDestination(label: 'Kontak', title: 'Kontak', icon: Icons.call_outlined),
+  AppDestination(
+    label: 'Katalog',
+    title: 'Katalog',
+    icon: Icons.storefront_outlined,
+  ),
 ];

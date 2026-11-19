@@ -48,8 +48,7 @@ class SecondPage extends StatelessWidget {
                   const SizedBox(height: 20),
                   const Text(
                     'Aplikasi mini project Flutter untuk menampilkan kartu '
-                    'mahasiswa beserta profil, galeri, dan kontak dalam satu '
-                    'alur navigasi.',
+                    'mahasiswa, profil, galeri, kontak, dan katalog perlengkapan kuliah.',
                     style: TextStyle(
                       fontSize: 14,
                       height: 1.5,
@@ -100,6 +99,11 @@ class SecondPage extends StatelessWidget {
                   const _PageRow(
                     name: 'Kontak',
                     description: 'Email dan telepon.',
+                  ),
+                  const SizedBox(height: 12),
+                  const _PageRow(
+                    name: 'Katalog',
+                    description: 'Daftar produk, favorit, dan keranjang.',
                   ),
                 ],
               ),
